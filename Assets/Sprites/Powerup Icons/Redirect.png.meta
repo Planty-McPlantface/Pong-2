@@ -116,10 +116,10 @@ TextureImporter:
       name: Redirect_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 31
-        width: 223
-        height: 226
+        x: 27
+        y: 26
+        width: 233
+        height: 237
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -116,10 +116,10 @@ TextureImporter:
       name: Damage_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 26
-        width: 234
-        height: 236
+        x: 22
+        y: 19
+        width: 244
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
