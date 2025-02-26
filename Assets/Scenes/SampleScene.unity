@@ -791,6 +791,7 @@ GameObject:
   - component: {fileID: 1651144049}
   - component: {fileID: 1651144050}
   - component: {fileID: 1651144051}
+  - component: {fileID: 1651144052}
   m_Layer: 0
   m_Name: Player Paddle
   m_TagString: Untagged
@@ -835,6 +836,7 @@ MonoBehaviour:
   paddleSpeed: 10
   growRate: 5
   colliderBuffer: 0.1
+  worldSpeed: 1
   newSize: 0
 --- !u!114 &1651144051
 MonoBehaviour:
@@ -848,6 +850,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc75abe719c9684da5c030de589d899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1651144052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651144048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9383a70d0492ccd48ba84eebe2c9188f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthMax: 0
+  healthCurrent: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

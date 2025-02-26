@@ -23,6 +23,8 @@ public class PaddleMovement : MonoBehaviour
 
     [SerializeField] private float growRate = 5;
     [SerializeField] private float colliderBuffer = 0.1f;
+    [Header("World")]
+    [SerializeField] private float worldSpeed = 1.0f;
 
     [Header("Debug")]
     [SerializeField] private float newSize;
@@ -41,15 +43,15 @@ public class PaddleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer(playerInput.GetMoveDir());
+        //This order is important somehow to reduce visual bugs, don't fucking ask why cuz I don't know
         HandleSizeChange();
-
+        MovePlayer(playerInput.GetMoveDir());
     }
 
     private void MovePlayer(float axisVal){
         //Shortest vector construction
         transform.position =  new Vector3(
-            Math.Clamp(transform.position.x + axisVal * paddleSpeed * Time.deltaTime, (paddleSize- arenaSize)/2, (arenaSize - paddleSize)/2),
+            Math.Clamp(transform.position.x + axisVal * paddleSpeed * Time.deltaTime * worldSpeed, (paddleSize- arenaSize)/2, (arenaSize - paddleSize)/2),
             transform.position.y,
             transform.position.z
             );
@@ -59,7 +61,7 @@ public class PaddleMovement : MonoBehaviour
             if(newSize != paddleSize){
             newSize = Math.Clamp(newSize, 0, arenaSize);
             int sign = Math.Sign(newSize - paddleSize);
-            paddleSize += growRate * Time.deltaTime * Math.Sign(newSize - paddleSize);
+            paddleSize += worldSpeed * growRate * Time.deltaTime * Math.Sign(newSize - paddleSize);
             if(sign == 1){
                 paddleSize = Math.Clamp(paddleSize, 0, newSize);
             }else if(sign == -1){   
