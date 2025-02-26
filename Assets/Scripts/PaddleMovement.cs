@@ -28,6 +28,8 @@ public class PaddleMovement : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private float newSize;
+    [SerializeField] private float paddleVelocity;
+
     
     private void Awake() {
         graphicsTransform.localScale = new Vector3(paddleSize, 0.15f, 1 );
@@ -44,8 +46,10 @@ public class PaddleMovement : MonoBehaviour
     void Update()
     {
         //This order is important somehow to reduce visual bugs, don't fucking ask why cuz I don't know
+        float previousLocation = transform.position.x;
         HandleSizeChange();
         MovePlayer(playerInput.GetMoveDir());
+        paddleVelocity = (previousLocation - transform.position.x)/Time.deltaTime; 
     }
 
     private void MovePlayer(float axisVal){
