@@ -17,7 +17,7 @@ public class BallMovement : MonoBehaviour
     void Update()
     {
         RaycastHit2D forwardRay= Physics2D.Raycast(transform.position + new Vector3(currentVelocity.x, currentVelocity.y, 0).normalized * ballRadius,
-            currentVelocity + Vector2.Perpendicular(currentVelocity)*Time.deltaTime*spinAmount, speed * Time.deltaTime );
+            currentVelocity + Vector2.Perpendicular(currentVelocity)*Time.deltaTime*spinAmount, speed * Time.deltaTime + ballRadius);
         
         if(forwardRay.collider != null){
             Debug.Log("hit");
@@ -31,8 +31,8 @@ public class BallMovement : MonoBehaviour
     }
 
     private void Bounce(Vector2 normal, Vector2 bouncePoint){
-        Vector3 snapVector = new Vector3(bouncePoint.x, bouncePoint.y, 0) - transform.position;
-        transform.position += snapVector - snapVector.normalized*ballRadius; 
+        Vector3 snapVector = new Vector3(bouncePoint.x, bouncePoint.y, 0) - new Vector3(transform.position.x, transform.position.y, 0) ;
+        transform.position += snapVector * (1 + ballRadius / Vector2.Dot(snapVector, normal));
         currentVelocity = currentVelocity - Vector2.Dot(normal, currentVelocity) * 2 * normal ;
     }
 
@@ -42,7 +42,7 @@ public class BallMovement : MonoBehaviour
         currentVelocity = newVelocity;
 
         //Debug
-        Debug.DrawLine(transform.position + new Vector3(currentVelocity.x, currentVelocity.y, 0).normalized * ballRadius, transform.position + new Vector3(newVelocity.x, newVelocity.y, 0).normalized * speed * Time.deltaTime, Color.red);
+        Debug.DrawLine(transform.position + new Vector3(currentVelocity.x, currentVelocity.y, 0).normalized * ballRadius, transform.position + new Vector3(newVelocity.x, newVelocity.y, 0).normalized * (speed * Time.deltaTime + 2 * ballRadius), Color.red);
     }
 
 }
